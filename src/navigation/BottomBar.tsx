@@ -15,37 +15,46 @@ function BottomBar() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
         tabBarStyle: {
-          backgroundColor: colors.PRIMARY,
+          backgroundColor: colors.background,
         },
       }}>
       <Tab.Screen
-        name="HomeScreen"
+        name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <FontAwesome name={'home'} color={color} size={size} />
-          ),
-          tabBarLabel: 'Home',
+          tabBarIcon: ({size}) => <FontAwesome name={'home'} size={size} />,
+          tabBarLabel: 'HOME',
+          tabBarLabelStyle: {
+            // color: colors.primary,
+          },
+          tabBarIconStyle: {
+            color: colors.onBackground,
+          },
         }}
       />
       <Tab.Screen
         name="ProfileScreen"
         component={Profile}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <FontAwesome name="user" color={color} size={size} />
-          ),
-          tabBarLabel: 'User',
+          tabBarIcon: ({size}) => <FontAwesome name="user" size={size} />,
+          tabBarLabel: 'EXAMS',
+          tabBarIconStyle: {
+            color: colors.onBackground,
+          },
         }}
       />
       <Tab.Screen
         name="AI"
         component={Upload}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <FontAwesome name="comment" color={color} size={size} />
+          tabBarIcon: ({size}) => (
+            <FontAwesome
+              name="comment"
+              color={colors.onBackground}
+              size={size}
+            />
           ),
           tabBarLabel: 'AI',
         }}
@@ -54,8 +63,8 @@ function BottomBar() {
         name="CBT"
         component={CBT}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <FontAwesome name="book" color={color} size={size} />
+          tabBarIcon: ({size}) => (
+            <FontAwesome name="book" color={colors.onBackground} size={size} />
           ),
           tabBarLabel: 'CBT',
         }}
@@ -64,8 +73,8 @@ function BottomBar() {
         name="Settings"
         component={Settings}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <FontAwesome name="gear" color={color} size={size} />
+          tabBarIcon: ({size}) => (
+            <FontAwesome name="gear" color={colors.onBackground} size={size} />
           ),
           tabBarLabel: 'Settings',
         }}
