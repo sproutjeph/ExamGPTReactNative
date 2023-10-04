@@ -14,7 +14,7 @@ interface Props {
 const AppButtont: FC<Props> = ({title, onPress, isLoading, borderRadius}) => {
   return (
     <Pressable
-      style={[styles.container, {borderRadius: borderRadius || 25}]}
+      style={[styles.container, {borderRadius: borderRadius || 8}]}
       onPress={onPress}>
       {isLoading ? <Loader /> : <Text style={styles.title}>{title}</Text>}
     </Pressable>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: 45,
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },

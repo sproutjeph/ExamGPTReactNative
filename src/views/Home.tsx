@@ -1,6 +1,8 @@
 import Snackbar, {SnackbarPosition} from '@components/Snackbar';
+import AppButtont from '@ui/AppButtont';
+import AppInput from '@ui/AppInput';
 import React, {FC, useState} from 'react';
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 interface Props {}
 
@@ -15,8 +17,8 @@ const Home: FC<Props> = ({}) => {
           message="Snakbar"
         />
       )}
-      <Text>Home</Text>
-      <Button title="Toggle Snack Bar" onPress={() => setShow(!show)} />
+      <AppButtont title="Toggle Snack Bar" onPress={() => setShow(!show)} />
+      <AppInput />
     </View>
   );
 };
@@ -26,6 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 50,
+    marginHorizontal: 16,
   },
 });
 
