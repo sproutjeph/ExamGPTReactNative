@@ -1,13 +1,16 @@
 import AuthInputField from '@components/AuthInputField';
 import GoogleSignInButton from '@components/GoogleSignInButton';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import AppButton from '@ui/AppButton';
 import colors from '@utils/colors';
 import React, {FC} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
+import {AuthStackParamList} from 'src/@types/navigation';
 
 interface Props {}
 
 const SignUp: FC<Props> = ({}) => {
+  const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Register Account</Text>
@@ -35,7 +38,10 @@ const SignUp: FC<Props> = ({}) => {
       </View>
       <View style={styles.linkContainer}>
         <Text>Dont have an account? </Text>
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            navigation.navigate('SignIn');
+          }}>
           <Text style={{color: colors.primary}}>Sign in</Text>
         </Pressable>
       </View>
