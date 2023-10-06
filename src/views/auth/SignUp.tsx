@@ -41,7 +41,7 @@ const SignUp: FC<Props> = ({}) => {
         <Text>Dont have an account? </Text>
         <Applink
           onPress={() => {
-            navigation.navigate('SignIn');
+            navigation.navigate('Activation');
           }}
           title="Sign In"
           active

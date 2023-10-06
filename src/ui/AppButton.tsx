@@ -11,7 +11,7 @@ interface Props {
   borderRadius?: number;
 }
 
-const AppButtont: FC<Props> = ({title, onPress, isLoading, borderRadius}) => {
+const AppButton: FC<Props> = ({title, onPress, isLoading, borderRadius}) => {
   return (
     <Pressable
       style={[styles.container, {borderRadius: borderRadius || 8}]}
@@ -24,7 +24,7 @@ const AppButtont: FC<Props> = ({title, onPress, isLoading, borderRadius}) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 45,
+    height: 42,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
   title: {
     color: colors.onSecondary,
     fontSize: 18,
+    letterSpacing: 1,
   },
 });
 
-export default AppButtont;
+export default AppButton;

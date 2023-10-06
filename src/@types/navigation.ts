@@ -9,5 +9,5 @@ export type AuthStackParamList = {
   SignUp: undefined;
   SignIn: undefined;
   LostPassword: undefined;
-  Verification: {userInfo: INewUserResponse};
+  Activation: {userInfo: INewUserResponse};
 };

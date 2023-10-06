@@ -1,4 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Activation from '@views/auth/Activation';
 import SignIn from '@views/auth/SignIn';
 import SignUp from '@views/auth/SignUp';
 import React, {FC} from 'react';
@@ -15,6 +16,7 @@ const AuthNavigator: FC<Props> = ({}) => {
       }}>
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Activation" component={Activation} />
     </Stack.Navigator>
   );
 };
