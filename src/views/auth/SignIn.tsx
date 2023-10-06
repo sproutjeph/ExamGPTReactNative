@@ -2,6 +2,7 @@ import AuthInputField from '@components/AuthInputField';
 import GoogleSignInButton from '@components/GoogleSignInButton';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import AppButton from '@ui/AppButton';
+import Applink from '@ui/Applink';
 import colors from '@utils/colors';
 import React, {FC} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
@@ -37,12 +38,13 @@ const SignIn: FC<Props> = ({}) => {
       </View>
       <View style={styles.linkContainer}>
         <Text>Dont have an account? </Text>
-        <Pressable
+        <Applink
           onPress={() => {
             navigation.navigate('SignUp');
-          }}>
-          <Text style={{color: colors.primary}}>Sign up</Text>
-        </Pressable>
+          }}
+          title="Sign Up"
+          active
+        />
       </View>
     </View>
   );
