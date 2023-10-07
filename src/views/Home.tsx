@@ -1,17 +1,10 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
-import SignIn from './auth/SignIn';
-import SignUp from './auth/SignUp';
 
 interface Props {}
 
 const Home: FC<Props> = ({}) => {
-  return (
-    <View style={styles.container}>
-      {/* <SignIn /> */}
-      <SignUp />
-    </View>
-  );
+  return <View style={styles.container}></View>;
 };
 
 const styles = StyleSheet.create({
