@@ -1,4 +1,3 @@
-import colors from '@utils/colors';
 import React, {FC} from 'react';
 import {StyleSheet, Text, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -9,14 +8,16 @@ interface Props {
     icon: string;
     route: string;
     backgroundColor: any;
+    color: any;
   };
 }
 
 const HomeLink: FC<Props> = ({item}) => {
   return (
-    <Pressable style={[styles.container]}>
+    <Pressable
+      style={[styles.container, {backgroundColor: item.backgroundColor}]}>
       <Icon name={item.icon} size={30} />
-      <Text>{item.label}</Text>
+      <Text style={{color: item.color}}>{item.label}</Text>
     </Pressable>
   );
 };

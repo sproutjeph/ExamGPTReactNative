@@ -6,25 +6,29 @@ export const routes = [
     icon: 'th-large',
     route: 'dashboard',
     backgroundColor: colors.tertiaryContainer,
+    color: colors.onTertiaryContainer,
   },
   {
     label: 'Exams',
     icon: 'leanpub',
     route: 'exams',
     backgroundColor: colors.primaryContainer,
+    color: colors.onPrimaryContainer,
   },
   {
     label: 'Ask AI',
     icon: 'reddit-alien',
     route: 'ask-ai',
     backgroundColor: colors.secondaryContainer,
+    color: colors.primary,
   },
 
   {
     label: 'Books',
     icon: 'book',
     route: 'books',
-    backgroundColor: colors.errorContainer,
+    backgroundColor: colors.tertiaryContainer,
+    color: colors.onTertiaryContainer,
   },
 
   {
@@ -32,18 +36,21 @@ export const routes = [
     icon: 'laptop',
     route: 'computer-base-test',
     backgroundColor: colors.primaryContainer,
+    color: colors.onPrimaryContainer,
   },
   {
     label: 'Subscription',
     icon: 'dollar',
     route: 'subscription-prices',
-    backgroundColor: colors.tertiaryContainer,
+    backgroundColor: colors.secondaryContainer,
+    color: colors.primary,
   },
   {
     label: 'Admin',
     icon: 'user-o',
     route: 'admin-dashboard',
-    backgroundColor: colors.secondaryContainer,
+    backgroundColor: colors.tertiaryContainer,
+    color: colors.onTertiaryContainer,
   },
 ];
 export const exams = [
