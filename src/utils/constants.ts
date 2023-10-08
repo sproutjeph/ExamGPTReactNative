@@ -11,7 +11,7 @@ export const routes = [
   {
     label: 'Exams',
     icon: 'leanpub',
-    route: 'exams',
+    route: 'Exams',
     backgroundColor: colors.primaryContainer,
     color: colors.onPrimaryContainer,
   },

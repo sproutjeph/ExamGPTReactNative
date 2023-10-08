@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   subTitle: {
     textAlign: 'center',
     color: colors.tertiary,
+    fontSize: 12,
   },
   gridContainer: {
     alignItems: 'center',

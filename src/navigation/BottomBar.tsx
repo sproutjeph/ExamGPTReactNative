@@ -35,7 +35,7 @@ function BottomBar() {
         }}
       />
       <Tab.Screen
-        name="ProfileScreen"
+        name="Exams"
         component={Profile}
         options={{
           tabBarIcon: ({size}) => <FontAwesome name="user" size={size} />,

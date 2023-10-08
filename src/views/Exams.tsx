@@ -1,18 +1,21 @@
 import React, {FC} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import JAMB from './JAMB';
+import WASSEC from './WASSEC';
+
+const Tab = createMaterialTopTabNavigator();
 
 interface Props {}
 
 const Exams: FC<Props> = ({}) => {
   return (
-    <View style={styles.container}>
-      <Text>Exams</Text>
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="JAMB" component={JAMB} />
+      <Tab.Screen name="WASSEC" component={WASSEC} />
+      <Tab.Screen name="NECO" component={WASSEC} />
+      <Tab.Screen name="POST-UTME" component={WASSEC} />
+    </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {},
-});
 
 export default Exams;

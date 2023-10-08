@@ -8,6 +8,7 @@ interface INewUserResponse {
 export type AuthStackParamList = {
   SignUp: undefined;
   SignIn: undefined;
+  Exams: undefined;
   LostPassword: undefined;
   Activation: {userInfo: INewUserResponse};
 };
