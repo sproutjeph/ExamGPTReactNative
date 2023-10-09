@@ -3,10 +3,10 @@ import {View, StyleSheet, Text} from 'react-native';
 
 interface Props {}
 
-const Jamb: FC<Props> = ({}) => {
+const Neco: FC<Props> = ({}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>JAMB PAST QUESTION</Text>
+      <Text style={styles.header}>NECO PAST QUESTION</Text>
     </View>
   );
 };
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Jamb;
+export default Neco;
