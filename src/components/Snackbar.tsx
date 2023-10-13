@@ -1,5 +1,6 @@
+import {useAppSelector} from '@store/hooks';
 import colors from '@utils/colors';
-import React, {FC, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {View, StyleSheet, Text, Animated} from 'react-native';
 
 export enum SnackbarPosition {
@@ -11,15 +12,11 @@ export enum SnackbarType {
   SUCCESS = 'success',
 }
 
-interface Props {
-  message: string;
-  position: SnackbarPosition;
-  open: boolean;
-  type?: SnackbarType;
-}
-
-const Snackbar: FC<Props> = ({message, position, open, type}) => {
+const Snackbar = () => {
   const animatedValue = useRef(new Animated.Value(0));
+  const {message, open, position, type} = useAppSelector(
+    state => state.sanckbar,
+  );
 
   const showSnackbar = () => {
     Animated.timing(animatedValue.current, {
@@ -40,7 +37,7 @@ const Snackbar: FC<Props> = ({message, position, open, type}) => {
       showSnackbar();
       const timeoutId = setTimeout(() => {
         hideSnackbar();
-      }, 3000);
+      }, 5000);
       return () => clearTimeout(timeoutId);
     } else {
       hideSnackbar();
@@ -62,8 +59,8 @@ const Snackbar: FC<Props> = ({message, position, open, type}) => {
             outputRange: [-300, 0],
           }),
         },
-        {marginBottom: position === SnackbarPosition.TOP ? 0 : 50},
-        {marginTop: position === SnackbarPosition.BOTTOM ? 0 : 50},
+        {marginBottom: position === SnackbarPosition.TOP ? 0 : 80},
+        {marginTop: position === SnackbarPosition.BOTTOM ? 0 : 80},
       ]}>
       <View
         style={[
@@ -97,8 +94,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     alignContent: 'center',
-    height: 50,
-    marginHorizontal: 16,
+    height: 'auto',
+    zIndex: 1000,
   },
   content: {
     flex: 1,
@@ -113,6 +110,7 @@ const styles = StyleSheet.create({
   },
   message: {
     color: colors.onError,
+    textAlign: 'center',
   },
 });
 

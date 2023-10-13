@@ -1,6 +1,6 @@
 import AuthInputField from '@components/AuthInputField';
 import GoogleSignInButton from '@components/GoogleSignInButton';
-import Snackbar, {SnackbarPosition, SnackbarType} from '@components/Snackbar';
+import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import Applink from '@ui/Applink';
 import colors from '@utils/colors';
@@ -13,6 +13,8 @@ import AppButton from '@ui/AppButton';
 import {zodResolver} from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import {axiosInstance} from '@utils/axiosInstance';
+import {useAppDispatch} from '@store/hooks';
+import {updateSanckBar} from '@feauters/sanckbarSlice';
 
 interface Props {}
 export interface IRegUser {
@@ -31,6 +33,7 @@ const registerFormSchema = z.object({
 });
 
 const SignUp: FC<Props> = ({}) => {
+  const dispatch = useAppDispatch();
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const [secureEntry, setSecureEntry] = useState(true);
 
@@ -56,21 +59,25 @@ const SignUp: FC<Props> = ({}) => {
     try {
       const res = await axiosInstance.post('/register-user', data);
       if (res.status) {
-        <Snackbar
-          message={res.data.message}
-          open={true}
-          position={SnackbarPosition.TOP}
-          type={SnackbarType.SUCCESS}
-        />;
+        dispatch(
+          updateSanckBar({
+            message: `${res.data.message}`,
+            open: true,
+            position: SnackbarPosition.TOP,
+            type: SnackbarType.SUCCESS,
+          }),
+        );
         navigation.navigate('Activation');
       }
     } catch (error: any) {
-      <Snackbar
-        message={error.message}
-        open={true}
-        position={SnackbarPosition.TOP}
-        type={SnackbarType.ERROR}
-      />;
+      dispatch(
+        updateSanckBar({
+          message: `${error.message}`,
+          open: true,
+          position: SnackbarPosition.TOP,
+          type: SnackbarType.ERROR,
+        }),
+      );
     }
   };
 
@@ -143,8 +150,9 @@ const SignUp: FC<Props> = ({}) => {
 
       <View style={styles.submitButtonContainer}>
         <AppButton
-          title={isSubmitting ? 'Loading...' : 'Register'}
+          title="Register"
           onPress={handleSubmit(onSubmit)}
+          isLoading={isSubmitting}
         />
       </View>
 

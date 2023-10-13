@@ -1,7 +1,10 @@
 import {Action, ThunkAction, configureStore} from '@reduxjs/toolkit';
+import sanckbarReducer from '../feauters/sanckbarSlice';
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    sanckbar: sanckbarReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

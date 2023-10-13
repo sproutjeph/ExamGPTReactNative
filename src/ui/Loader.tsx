@@ -13,7 +13,7 @@ interface LoaderProps {
   color?: string;
 }
 
-const Loader: FC<LoaderProps> = ({color = colors.primary}) => {
+const Loader: FC<LoaderProps> = ({color = colors.onPrimary}) => {
   const initialRotation = useSharedValue(0);
 
   const transform = useAnimatedStyle(() => {

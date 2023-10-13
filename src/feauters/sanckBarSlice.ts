@@ -1,30 +1,42 @@
+import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-type sanckBarType = 'success' | 'error';
-
-interface SanckBarState {
+interface SanckbarState {
   message: string;
-  type: sanckBarType;
+  type: SnackbarType;
+  position: SnackbarPosition;
+  open: boolean;
 }
 
-const initialState: SanckBarState = {
+const initialState: SanckbarState = {
   message: '',
-  type: 'success',
+  type: SnackbarType.SUCCESS,
+  position: SnackbarPosition.TOP,
+  open: false,
 };
-const SanckBarSlice = createSlice({
+const SanckbarSlice = createSlice({
   name: 'sanckBar',
   initialState,
   reducers: {
     updateSanckBar(
       state,
-      {payload}: PayloadAction<{message: string; type: sanckBarType}>,
+      {
+        payload,
+      }: PayloadAction<{
+        message: string;
+        type: SnackbarType;
+        open: boolean;
+        position: SnackbarPosition;
+      }>,
     ) {
       state.message = payload.message;
       state.type = payload.type;
+      state.position = payload.position;
+      state.open = payload.open;
     },
   },
 });
 
-export const {updateSanckBar} = SanckBarSlice.actions;
+export const {updateSanckBar} = SanckbarSlice.actions;
 
-export default SanckBarSlice.reducer;
+export default SanckbarSlice.reducer;
