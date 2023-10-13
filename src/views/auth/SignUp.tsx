@@ -55,7 +55,6 @@ const SignUp: FC<Props> = ({}) => {
   });
 
   const onSubmit = async (data: IRegUser) => {
-    console.log(data);
     try {
       const res = await axiosInstance.post('/register-user', data);
       if (res.status) {
@@ -67,7 +66,9 @@ const SignUp: FC<Props> = ({}) => {
             type: SnackbarType.SUCCESS,
           }),
         );
-        navigation.navigate('Activation');
+        navigation.navigate('Activation', {
+          activationToken: `${res.data.activationToken}`,
+        });
       }
     } catch (error: any) {
       dispatch(

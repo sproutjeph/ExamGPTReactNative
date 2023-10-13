@@ -1,14 +1,14 @@
-interface INewUserResponse {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-}
+// interface INewUserResponse {
+//   id: string;
+//   name: string;
+//   email: string;
+//   password: string;
+// }
 
 export type AuthStackParamList = {
   SignUp: undefined;
   SignIn: undefined;
   Exams: undefined;
   LostPassword: undefined;
-  Activation: {userInfo: INewUserResponse};
+  Activation: {activationToken: String};
 };
