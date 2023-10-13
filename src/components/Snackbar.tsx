@@ -6,14 +6,19 @@ export enum SnackbarPosition {
   TOP = 'top',
   BOTTOM = 'bottom',
 }
+export enum SnackbarType {
+  ERROR = 'error',
+  SUCCESS = 'success',
+}
 
 interface Props {
   message: string;
   position: SnackbarPosition;
   open: boolean;
+  type?: SnackbarType;
 }
 
-const Snackbar: FC<Props> = ({message, position, open}) => {
+const Snackbar: FC<Props> = ({message, position, open, type}) => {
   const animatedValue = useRef(new Animated.Value(0));
 
   const showSnackbar = () => {
@@ -31,7 +36,20 @@ const Snackbar: FC<Props> = ({message, position, open}) => {
   };
 
   useEffect(() => {
-    open ? showSnackbar() : hideSnackbar();
+    if (open) {
+      showSnackbar();
+      const timeoutId = setTimeout(() => {
+        hideSnackbar();
+      }, 3000);
+      return () => clearTimeout(timeoutId);
+    } else {
+      hideSnackbar();
+    }
+  }, [open]);
+  useEffect(() => {
+    if (!open) {
+      hideSnackbar();
+    }
   }, [open]);
 
   return (
@@ -44,9 +62,31 @@ const Snackbar: FC<Props> = ({message, position, open}) => {
             outputRange: [-300, 0],
           }),
         },
+        {marginBottom: position === SnackbarPosition.TOP ? 0 : 50},
+        {marginTop: position === SnackbarPosition.BOTTOM ? 0 : 50},
       ]}>
-      <View style={styles.content}>
-        <Text style={styles.message}>{message}</Text>
+      <View
+        style={[
+          styles.content,
+          {
+            backgroundColor:
+              type === SnackbarType.ERROR
+                ? colors.errorContainer
+                : colors.primary,
+          },
+        ]}>
+        <Text
+          style={[
+            styles.message,
+            {
+              color:
+                type === SnackbarType.ERROR
+                  ? colors.onErrorContainer
+                  : colors.onPrimary,
+            },
+          ]}>
+          {message}
+        </Text>
       </View>
     </Animated.View>
   );

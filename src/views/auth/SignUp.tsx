@@ -1,5 +1,6 @@
 import AuthInputField from '@components/AuthInputField';
 import GoogleSignInButton from '@components/GoogleSignInButton';
+import Snackbar, {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import AppButton from '@ui/AppButton';
 import Applink from '@ui/Applink';
@@ -33,6 +34,12 @@ const SignUp: FC<Props> = ({}) => {
       </View>
 
       <Text style={styles.or}>Or</Text>
+      <Snackbar
+        message="Sanck Bar"
+        open={true}
+        position={SnackbarPosition.BOTTOM}
+        type={SnackbarType.SUCCESS}
+      />
 
       <View>
         <GoogleSignInButton />

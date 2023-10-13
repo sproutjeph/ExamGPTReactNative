@@ -21,7 +21,7 @@ const AppNavigator: FC<Props> = ({}) => {
     <NavigationContainer theme={AppTheme}>
       {/* <MyDrawer /> */}
 
-      {isAuth ? <BottomBar /> : <AuthNavigator />}
+      {!isAuth ? <BottomBar /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };
