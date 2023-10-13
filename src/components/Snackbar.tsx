@@ -72,7 +72,7 @@ const Snackbar: FC<Props> = ({message, position, open, type}) => {
             backgroundColor:
               type === SnackbarType.ERROR
                 ? colors.errorContainer
-                : colors.primary,
+                : colors.success,
           },
         ]}>
         <Text
@@ -82,7 +82,7 @@ const Snackbar: FC<Props> = ({message, position, open, type}) => {
               color:
                 type === SnackbarType.ERROR
                   ? colors.onErrorContainer
-                  : colors.onPrimary,
+                  : colors.onSuccess,
             },
           ]}>
           {message}

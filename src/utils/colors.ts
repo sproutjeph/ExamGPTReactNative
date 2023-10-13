@@ -23,6 +23,8 @@ const onSurfaceVariant = '#4D444C';
 const inverseSurface = '#2F312E';
 const inverseOnSurface = '#FAEEEF';
 const outline = '#7F747C';
+const success = '#00C853';
+const onSuccess = '#FFFFFF';
 
 const colors = {
   primary,
@@ -50,6 +52,8 @@ const colors = {
   inverseSurface,
   inverseOnSurface,
   outline,
+  success,
+  onSuccess,
 };
 
 export default colors;

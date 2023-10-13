@@ -16,7 +16,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import {useForm, Controller} from 'react-hook-form';
+import {FieldErrors} from 'react-hook-form';
 import colors from '@utils/colors';
 
 interface AuthInputFieldProps {
@@ -29,6 +29,12 @@ interface AuthInputFieldProps {
   containerStyle?: StyleProp<ViewStyle>;
   rightIcon?: ReactNode;
   onRightIconPressed?: () => void;
+  errors: FieldErrors<{
+    [x: string]: string;
+  }>;
+  onChange: (value: string) => void;
+  onBlur: () => void;
+  value: string;
 }
 
 const AuthInputField: FC<AuthInputFieldProps> = ({
@@ -41,16 +47,12 @@ const AuthInputField: FC<AuthInputFieldProps> = ({
   containerStyle,
   rightIcon,
   onRightIconPressed,
+  errors,
+  onBlur,
+  onChange,
+  value,
 }) => {
   const inputTransformValue = useSharedValue(0);
-  const {
-    control,
-    formState: {errors},
-  } = useForm({
-    defaultValues: {
-      [name]: '',
-    },
-  });
 
   const errorMsg = errors[name]?.message || '';
 
@@ -76,6 +78,7 @@ const AuthInputField: FC<AuthInputFieldProps> = ({
     if (errorMsg) {
       shakUI();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errorMsg]);
 
   return (
@@ -85,21 +88,16 @@ const AuthInputField: FC<AuthInputFieldProps> = ({
         <Text style={styles.errorMsg}>{errorMsg}</Text>
       </View>
       <View>
-        <Controller
-          control={control}
-          name={name}
-          render={({field: {onChange, onBlur, value}}) => (
-            <AppInput
-              placeholder={placeholder}
-              keyboardType={keyboardType}
-              autoCapitalize={autoCapitalize}
-              secureTextEntry={secureTextEntry}
-              onChangeText={onChange}
-              value={value}
-              onBlur={onBlur}
-            />
-          )}
+        <AppInput
+          placeholder={placeholder}
+          keyboardType={keyboardType}
+          autoCapitalize={autoCapitalize}
+          secureTextEntry={secureTextEntry}
+          onChangeText={onChange}
+          value={value}
+          onBlur={onBlur}
         />
+
         {rightIcon ? (
           <Pressable style={styles.rightIcon} onPress={onRightIconPressed}>
             {rightIcon}

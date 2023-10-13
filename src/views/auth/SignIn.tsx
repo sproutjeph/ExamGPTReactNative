@@ -3,32 +3,96 @@ import GoogleSignInButton from '@components/GoogleSignInButton';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import AppButton from '@ui/AppButton';
 import Applink from '@ui/Applink';
+import PasswordVisiblityIcon from '@ui/PasswordVisiblityIcon';
 import colors from '@utils/colors';
-import React, {FC} from 'react';
-import {View, StyleSheet, Text, Pressable} from 'react-native';
+import React, {FC, useState} from 'react';
+import {useForm, Controller} from 'react-hook-form';
+import {View, StyleSheet, Text} from 'react-native';
 import {AuthStackParamList} from 'src/@types/navigation';
+import {zodResolver} from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 interface Props {}
+const FormSchema = z.object({
+  email: z.string().email('Invalid email').min(1, 'Email is Required'),
+  password: z
+    .string()
+    .min(6, 'password must be greater than 6 characters')
+    .max(20),
+});
 
 const SignIn: FC<Props> = ({}) => {
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
+  const [secureEntry, setSecureEntry] = useState(true);
+
+  const togglePasswordVisiblity = () => {
+    setSecureEntry(!secureEntry);
+  };
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    resolver: zodResolver(FormSchema),
+  });
+
+  const onSubmit = (data: any) => console.log(data);
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Login</Text>
-      <AuthInputField
-        label="Email"
-        placeholder="example@gmail.com"
+
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({field: {onChange, onBlur, value}}) => (
+          <AuthInputField
+            placeholder="example@gmail.com"
+            onChange={onChange}
+            value={value}
+            onBlur={onBlur}
+            name="email"
+            label="Email"
+            errors={errors}
+          />
+        )}
         name="email"
       />
-      <AuthInputField
-        label="Password"
-        placeholder="*******"
-        name="email"
-        containerStyle={{marginVertical: 10}}
+
+      <Controller
+        control={control}
+        rules={{
+          maxLength: 100,
+        }}
+        render={({field: {onChange, onBlur, value}}) => (
+          <AuthInputField
+            placeholder="*******"
+            onChange={onChange}
+            value={value}
+            onBlur={onBlur}
+            name="password"
+            label="Password"
+            errors={errors}
+            autoCapitalize="none"
+            rightIcon={<PasswordVisiblityIcon privateIcon={secureEntry} />}
+            onRightIconPressed={() => {
+              togglePasswordVisiblity();
+            }}
+            secureTextEntry={secureEntry}
+          />
+        )}
+        name="password"
       />
 
       <View style={styles.submitButtonContainer}>
-        <AppButton title="Sign in" />
+        <AppButton title="Sign in" onPress={handleSubmit(onSubmit)} />
       </View>
 
       <Text style={styles.or}>Or Sign in with</Text>
