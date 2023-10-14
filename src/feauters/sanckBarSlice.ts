@@ -18,7 +18,7 @@ const SanckbarSlice = createSlice({
   name: 'sanckBar',
   initialState,
   reducers: {
-    updateSanckBar(
+    updateSanckbar(
       state,
       {
         payload,
@@ -37,6 +37,6 @@ const SanckbarSlice = createSlice({
   },
 });
 
-export const {updateSanckBar} = SanckbarSlice.actions;
+export const {updateSanckbar} = SanckbarSlice.actions;
 
 export default SanckbarSlice.reducer;

@@ -1,18 +1,21 @@
-import AuthInputField from '@components/AuthInputField';
-import GoogleSignInButton from '@components/GoogleSignInButton';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import AppButton from '@ui/AppButton';
-import Applink from '@ui/Applink';
+import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
+import GoogleSignInButton from '@components/GoogleSignInButton';
 import PasswordVisiblityIcon from '@ui/PasswordVisiblityIcon';
-import colors from '@utils/colors';
-import React, {FC, useState} from 'react';
+import {AuthStackParamList} from 'src/@types/navigation';
+import AuthInputField from '@components/AuthInputField';
+import {updateSanckbar} from '@feauters/sanckbarSlice';
 import {useForm, Controller} from 'react-hook-form';
 import {View, StyleSheet, Text} from 'react-native';
-import {AuthStackParamList} from 'src/@types/navigation';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {axiosInstance} from '@utils/axiosInstance';
+import {useAppDispatch} from '@store/hooks';
+import React, {useState} from 'react';
+import AppButton from '@ui/AppButton';
+import colors from '@utils/colors';
+import Applink from '@ui/Applink';
 import * as z from 'zod';
 
-interface Props {}
 const FormSchema = z.object({
   email: z.string().email('Invalid email').min(1, 'Email is Required'),
   password: z
@@ -21,7 +24,8 @@ const FormSchema = z.object({
     .max(20),
 });
 
-const SignIn: FC<Props> = ({}) => {
+const SignIn = () => {
+  const dispatch = useAppDispatch();
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const [secureEntry, setSecureEntry] = useState(true);
 
@@ -32,7 +36,7 @@ const SignIn: FC<Props> = ({}) => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: {errors, isSubmitting},
   } = useForm({
     defaultValues: {
       email: '',
@@ -41,7 +45,30 @@ const SignIn: FC<Props> = ({}) => {
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (userData: any) => {
+    try {
+      const {data} = await axiosInstance.post('/login-user', userData);
+      if (data.success) {
+        dispatch(
+          updateSanckbar({
+            message: 'Login successfull',
+            open: true,
+            position: SnackbarPosition.TOP,
+            type: SnackbarType.SUCCESS,
+          }),
+        );
+      }
+    } catch (error: any) {
+      dispatch(
+        updateSanckbar({
+          message: `${error.response.data.msg}`,
+          open: true,
+          position: SnackbarPosition.TOP,
+          type: SnackbarType.ERROR,
+        }),
+      );
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -61,6 +88,7 @@ const SignIn: FC<Props> = ({}) => {
             name="email"
             label="Email"
             errors={errors}
+            autoCapitalize="none"
           />
         )}
         name="email"
@@ -92,7 +120,11 @@ const SignIn: FC<Props> = ({}) => {
       />
 
       <View style={styles.submitButtonContainer}>
-        <AppButton title="Sign in" onPress={handleSubmit(onSubmit)} />
+        <AppButton
+          title="Sign in"
+          onPress={handleSubmit(onSubmit)}
+          isLoading={isSubmitting}
+        />
       </View>
 
       <Text style={styles.or}>Or Sign in with</Text>

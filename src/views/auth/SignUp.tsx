@@ -1,22 +1,21 @@
-import AuthInputField from '@components/AuthInputField';
-import GoogleSignInButton from '@components/GoogleSignInButton';
-import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import Applink from '@ui/Applink';
-import colors from '@utils/colors';
-import React, {FC, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {AuthStackParamList} from 'src/@types/navigation';
+import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
+import GoogleSignInButton from '@components/GoogleSignInButton';
 import PasswordVisiblityIcon from '@ui/PasswordVisiblityIcon';
+import {AuthStackParamList} from 'src/@types/navigation';
+import AuthInputField from '@components/AuthInputField';
+import {updateSanckbar} from '@feauters/sanckbarSlice';
+import {View, StyleSheet, Text} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
-import AppButton from '@ui/AppButton';
 import {zodResolver} from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import {axiosInstance} from '@utils/axiosInstance';
 import {useAppDispatch} from '@store/hooks';
-import {updateSanckBar} from '@feauters/sanckbarSlice';
+import AppButton from '@ui/AppButton';
+import React, {useState} from 'react';
+import colors from '@utils/colors';
+import Applink from '@ui/Applink';
+import * as z from 'zod';
 
-interface Props {}
 export interface IRegUser {
   name: string;
   email: string;
@@ -32,7 +31,7 @@ const registerFormSchema = z.object({
     .max(20),
 });
 
-const SignUp: FC<Props> = ({}) => {
+const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const [secureEntry, setSecureEntry] = useState(true);
@@ -59,7 +58,7 @@ const SignUp: FC<Props> = ({}) => {
       const res = await axiosInstance.post('/register-user', data);
       if (res.status) {
         dispatch(
-          updateSanckBar({
+          updateSanckbar({
             message: `${res.data.message}`,
             open: true,
             position: SnackbarPosition.TOP,
@@ -72,7 +71,7 @@ const SignUp: FC<Props> = ({}) => {
       }
     } catch (error: any) {
       dispatch(
-        updateSanckBar({
+        updateSanckbar({
           message: `${error.message}`,
           open: true,
           position: SnackbarPosition.TOP,

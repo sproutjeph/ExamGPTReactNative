@@ -1,15 +1,15 @@
-import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
-import {updateSanckBar} from '@feauters/sanckbarSlice';
+import {View, StyleSheet, Text, TextInput, Keyboard} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
+import React, {FC, useEffect, useRef, useState} from 'react';
+import {AuthStackParamList} from 'src/@types/navigation';
+import {updateSanckbar} from '@feauters/sanckbarSlice';
+import {axiosInstance} from '@utils/axiosInstance';
 import {useAppDispatch} from '@store/hooks';
 import AppButton from '@ui/AppButton';
-import Applink from '@ui/Applink';
 import OTPFiled from '@ui/OTPFiled';
-import {axiosInstance} from '@utils/axiosInstance';
-import React, {FC, useEffect, useRef, useState} from 'react';
-import {View, StyleSheet, Text, TextInput, Keyboard} from 'react-native';
-import {AuthStackParamList} from 'src/@types/navigation';
+import Applink from '@ui/Applink';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Activation'>;
 const otpFields = new Array(6).fill('');
@@ -54,7 +54,7 @@ const Activation: FC<Props> = ({route}) => {
   const onSubmit = async () => {
     if (!isValidOtp) {
       return dispatch(
-        updateSanckBar({
+        updateSanckbar({
           message: 'Invalid OTP',
           open: true,
           position: SnackbarPosition.TOP,
@@ -64,26 +64,31 @@ const Activation: FC<Props> = ({route}) => {
     }
     setIsLoading(true);
     try {
-      const res = await axiosInstance.post('/activate-user', {
+      const {data} = await axiosInstance.post('/activate-user', {
         activationToken: activationToken,
         activationCode: otp.join(''),
       });
-      if (res.status) {
+      console.log(data);
+      console.log(data.success);
+
+      if (data.success) {
+        setIsLoading(false);
         dispatch(
-          updateSanckBar({
+          updateSanckbar({
             message: 'Activation Successful',
             open: true,
             position: SnackbarPosition.TOP,
             type: SnackbarType.SUCCESS,
           }),
         );
-        setIsLoading(false);
         navigation.navigate('SignIn');
       }
     } catch (error: any) {
+      console.log(error.response.data.msg);
+
       dispatch(
-        updateSanckBar({
-          message: `${error.message}`,
+        updateSanckbar({
+          message: `${error.response.data.msg}`,
           open: true,
           position: SnackbarPosition.TOP,
           type: SnackbarType.ERROR,

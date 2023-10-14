@@ -23,7 +23,7 @@ const Loader: FC<LoaderProps> = ({color = colors.onPrimary}) => {
   });
 
   React.useEffect(() => {
-    initialRotation.value = withRepeat(withTiming(360), -1);
+    initialRotation.value = withRepeat(withTiming(360, {duration: 1000}), -1);
   });
   return (
     <Animated.View style={transform}>
