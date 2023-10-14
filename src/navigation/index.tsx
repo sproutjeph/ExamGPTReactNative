@@ -3,6 +3,7 @@ import React, {FC} from 'react';
 import BottomBar from './BottomBar';
 import colors from '@utils/colors';
 import AuthNavigator from './AuthNavigator';
+import {useAppSelector} from '@store/hooks';
 
 interface Props {}
 const AppTheme = {
@@ -15,11 +16,11 @@ const AppTheme = {
 };
 
 const AppNavigator: FC<Props> = ({}) => {
-  const isAuth = true;
+  const {isAuthenticated} = useAppSelector(state => state.auth);
   return (
     <NavigationContainer theme={AppTheme}>
       {/* <MyDrawer /> */}
-      {!isAuth ? <BottomBar /> : <AuthNavigator />}
+      {isAuthenticated ? <BottomBar /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

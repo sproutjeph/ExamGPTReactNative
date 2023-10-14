@@ -7,6 +7,7 @@ import AuthInputField from '@components/AuthInputField';
 import {updateSanckbar} from '@feauters/sanckbarSlice';
 import {useForm, Controller} from 'react-hook-form';
 import {View, StyleSheet, Text} from 'react-native';
+import {updateAuthState} from '@feauters/authSlice';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {axiosInstance} from '@utils/axiosInstance';
 import {useAppDispatch} from '@store/hooks';
@@ -49,6 +50,7 @@ const SignIn = () => {
     try {
       const {data} = await axiosInstance.post('/login-user', userData);
       if (data.success) {
+        dispatch(updateAuthState(true));
         dispatch(
           updateSanckbar({
             message: 'Login successfull',

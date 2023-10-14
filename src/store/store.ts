@@ -1,9 +1,11 @@
 import {Action, ThunkAction, configureStore} from '@reduxjs/toolkit';
 import sanckbarReducer from '../feauters/sanckbarSlice';
+import authReducer from '../feauters/authSlice';
 
 const store = configureStore({
   reducer: {
     sanckbar: sanckbarReducer,
+    auth: authReducer,
   },
 });
 
