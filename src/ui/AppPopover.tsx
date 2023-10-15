@@ -1,14 +1,18 @@
-import colors from '@utils/colors';
-import React, {useState} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
 import Popover from 'react-native-popover-view';
+import React, {useState} from 'react';
+import colors from '@utils/colors';
 
 interface PopoverProps {
   title: string;
-  content: any[];
+  content: {
+    examYear: number;
+    _id: string;
+    isActive: boolean;
+  }[];
 }
 
-const AppPopover: React.FC<PopoverProps> = ({title, content = []}) => {
+const AppPopover: React.FC<PopoverProps> = ({title, content}) => {
   const [showPopover, setShowPopover] = useState(false);
 
   return (
@@ -23,12 +27,12 @@ const AppPopover: React.FC<PopoverProps> = ({title, content = []}) => {
         </Pressable>
       }>
       <View style={styles.contentContainer}>
-        {content.map((item, index) => (
+        {[...new Set(content.map(year => year.examYear))].map((item, i) => (
           <Pressable
-            key={index}
+            key={i}
             style={styles.container}
             onPress={() => setShowPopover(false)}>
-            <Text style={styles.title}>{item.examYear}</Text>
+            <Text style={styles.title}>{item}</Text>
           </Pressable>
         ))}
       </View>
@@ -47,9 +51,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.onPrimary,
+    textTransform: 'capitalize',
   },
   contentContainer: {
+    width: 250,
     flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 5,
     padding: 10,
   },
