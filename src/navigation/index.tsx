@@ -1,9 +1,9 @@
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
-import React, {FC} from 'react';
+import {useAppSelector} from '@store/hooks';
+import AuthNavigator from './AuthNavigator';
 import BottomBar from './BottomBar';
 import colors from '@utils/colors';
-import AuthNavigator from './AuthNavigator';
-import {useAppSelector} from '@store/hooks';
+import React, {FC} from 'react';
 
 interface Props {}
 const AppTheme = {

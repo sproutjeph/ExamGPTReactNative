@@ -46,9 +46,9 @@ export const routes = [
     color: colors.primary,
   },
   {
-    label: 'Admin',
-    icon: 'user-o',
-    route: 'admin-dashboard',
+    label: 'Videos',
+    icon: 'video-camera',
+    route: 'videos',
     backgroundColor: colors.tertiaryContainer,
     color: colors.onTertiaryContainer,
   },
