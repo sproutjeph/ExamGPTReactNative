@@ -3,7 +3,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import AppButton from '@ui/AppButton';
 import React, {FC} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import {AuthStackParamList} from 'src/@types/navigation';
+import {AuthStackParamList} from '@utils/types';
 
 interface Props {}
 

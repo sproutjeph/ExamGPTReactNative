@@ -71,3 +71,13 @@ export const exams = [
     examName: 'POST-UTME',
   },
 ];
+
+export const queryKeys = {
+  questions: 'questions',
+  subjects: 'subjects',
+  allSubjects: 'allSubjects',
+  users: 'users',
+  currentUser: 'currentUser',
+  usersApiUseage: 'usersApiUseage',
+  registerUser: 'registerUser',
+};

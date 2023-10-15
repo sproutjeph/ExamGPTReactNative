@@ -2,7 +2,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {FC} from 'react';
 import {StyleSheet, Text, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {AuthStackParamList} from 'src/@types/navigation';
+import {AuthStackParamList} from '@utils/types';
 
 interface Props {
   item: {

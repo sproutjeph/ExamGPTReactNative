@@ -12,3 +12,14 @@ export type AuthStackParamList = {
   LostPassword: undefined;
   Activation: {activationToken: String};
 };
+
+export interface ISubject {
+  name: string;
+  _id: string;
+  exam: string;
+  examYears: {
+    examYear: number;
+    _id: string;
+    isActive: boolean;
+  }[];
+}

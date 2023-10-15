@@ -3,7 +3,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import React, {FC, useEffect, useRef, useState} from 'react';
-import {AuthStackParamList} from 'src/@types/navigation';
+import {AuthStackParamList} from '@utils/types';
 import {updateSanckbar} from '@feauters/sanckbarSlice';
 import {axiosInstance} from '@utils/axiosInstance';
 import {useAppDispatch} from '@store/hooks';

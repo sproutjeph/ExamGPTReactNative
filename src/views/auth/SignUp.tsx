@@ -2,7 +2,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import GoogleSignInButton from '@components/GoogleSignInButton';
 import PasswordVisiblityIcon from '@ui/PasswordVisiblityIcon';
-import {AuthStackParamList} from 'src/@types/navigation';
+import {AuthStackParamList} from '@utils/types';
 import AuthInputField from '@components/AuthInputField';
 import {updateSanckbar} from '@feauters/sanckbarSlice';
 import {View, StyleSheet, Text} from 'react-native';
