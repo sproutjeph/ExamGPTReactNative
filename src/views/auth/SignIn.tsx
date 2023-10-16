@@ -1,12 +1,12 @@
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import GoogleSignInButton from '@components/GoogleSignInButton';
+import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import PasswordVisiblityIcon from '@ui/PasswordVisiblityIcon';
 import AuthInputField from '@components/AuthInputField';
 import LoginAnimation from '@animations/LoginAnimation';
 import {updateSanckbar} from '@feauters/sanckbarSlice';
 import {useForm, Controller} from 'react-hook-form';
-import {View, StyleSheet, Text} from 'react-native';
 import {updateAuthState} from '@feauters/authSlice';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {axiosInstance} from '@utils/axiosInstance';
@@ -14,7 +14,6 @@ import {AuthStackParamList} from '@utils/types';
 import {useAppDispatch} from '@store/hooks';
 import React, {useState} from 'react';
 import AppButton from '@ui/AppButton';
-import colors from '@utils/colors';
 import Applink from '@ui/Applink';
 import * as z from 'zod';
 
@@ -64,7 +63,7 @@ const SignIn = () => {
     } catch (error: any) {
       dispatch(
         updateSanckbar({
-          message: `${error.response?.data?.msg}`,
+          message: `${error.response?.data?.msg || 'Something went wrong'}`,
           open: true,
           position: SnackbarPosition.TOP,
           type: SnackbarType.ERROR,
@@ -74,7 +73,7 @@ const SignIn = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <LoginAnimation />
       <Text style={styles.header}>Welcome Back</Text>
       <Text style={styles.subHeader}>
@@ -149,7 +148,7 @@ const SignIn = () => {
       <View>
         <GoogleSignInButton />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

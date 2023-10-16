@@ -1,21 +1,20 @@
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import GoogleSignInButton from '@components/GoogleSignInButton';
+import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import PasswordVisiblityIcon from '@ui/PasswordVisiblityIcon';
-import {AuthStackParamList} from '@utils/types';
+import LoginAnimation from '@animations/LoginAnimation';
 import AuthInputField from '@components/AuthInputField';
 import {updateSanckbar} from '@feauters/sanckbarSlice';
-import {View, StyleSheet, Text} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {axiosInstance} from '@utils/axiosInstance';
+import {AuthStackParamList} from '@utils/types';
 import {useAppDispatch} from '@store/hooks';
 import AppButton from '@ui/AppButton';
 import React, {useState} from 'react';
-import colors from '@utils/colors';
 import Applink from '@ui/Applink';
 import * as z from 'zod';
-import LoginAnimation from '@animations/LoginAnimation';
 
 export interface IRegUser {
   name: string;
@@ -83,10 +82,10 @@ const SignUp = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <LoginAnimation />
-
-      <Text style={styles.header}>Register Account</Text>
+      <Text style={styles.header}>Welcome to Exam-GPT</Text>
+      <Text style={styles.subHeader}>Let's start by Sign up!</Text>
 
       <Controller
         control={control}
@@ -174,7 +173,7 @@ const SignUp = () => {
       <View>
         <GoogleSignInButton />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -187,8 +186,10 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 10,
+  },
+  subHeader: {
+    fontSize: 11,
+    marginBottom: 10,
   },
   submitButtonContainer: {
     marginTop: 14,

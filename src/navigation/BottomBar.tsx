@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from '@views/Home';
-import Profile from '@views/Exams';
-import Upload from '@views/Books';
-import Settings from '@views/Settings';
-import colors from '@utils/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import UserProfile from '@components/UerProfile';
+import Settings from '@views/Settings';
+import Profile from '@views/Exams';
+import colors from '@utils/colors';
+import Upload from '@views/Books';
+import Home from '@views/Home';
 import CBT from '@views/CBT';
+import React from 'react';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,6 +19,9 @@ function BottomBar() {
         headerShown: true,
         tabBarStyle: {
           backgroundColor: colors.background,
+        },
+        headerRight: props => {
+          return <UserProfile {...props} />;
         },
       }}>
       <Tab.Screen
