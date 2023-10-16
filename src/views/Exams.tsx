@@ -4,6 +4,7 @@ import Jamb from './Jamb';
 import Wassce from './Wassce';
 import Neco from './Neco';
 import PostUtme from './PostUtme';
+import Exam from './Exam';
 
 const Tab = createMaterialTopTabNavigator();
 

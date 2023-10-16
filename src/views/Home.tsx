@@ -1,9 +1,9 @@
+import {View, StyleSheet, Text} from 'react-native';
 import HomeLink from '@components/HomeLink';
+import {routes} from '@utils/constants';
 import GridView from '@ui/GridView';
 import colors from '@utils/colors';
-import {routes} from '@utils/constants';
 import React, {FC} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
 
 interface Props {}
 

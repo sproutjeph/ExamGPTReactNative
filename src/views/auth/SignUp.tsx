@@ -15,6 +15,7 @@ import React, {useState} from 'react';
 import colors from '@utils/colors';
 import Applink from '@ui/Applink';
 import * as z from 'zod';
+import LoginAnimation from '@animations/LoginAnimation';
 
 export interface IRegUser {
   name: string;
@@ -83,6 +84,8 @@ const SignUp = () => {
 
   return (
     <View style={styles.container}>
+      <LoginAnimation />
+
       <Text style={styles.header}>Register Account</Text>
 
       <Controller
@@ -180,7 +183,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingHorizontal: 16,
-    justifyContent: 'center',
   },
   header: {
     fontSize: 24,

@@ -3,6 +3,7 @@ import {SnackbarPosition, SnackbarType} from '@components/Snackbar';
 import GoogleSignInButton from '@components/GoogleSignInButton';
 import PasswordVisiblityIcon from '@ui/PasswordVisiblityIcon';
 import AuthInputField from '@components/AuthInputField';
+import LoginAnimation from '@animations/LoginAnimation';
 import {updateSanckbar} from '@feauters/sanckbarSlice';
 import {useForm, Controller} from 'react-hook-form';
 import {View, StyleSheet, Text} from 'react-native';
@@ -49,7 +50,7 @@ const SignIn = () => {
   const onSubmit = async (userData: any) => {
     try {
       const {data} = await axiosInstance.post('/login-user', userData);
-      if (data.success) {
+      if (data?.success) {
         dispatch(updateAuthState(true));
         dispatch(
           updateSanckbar({
@@ -63,7 +64,7 @@ const SignIn = () => {
     } catch (error: any) {
       dispatch(
         updateSanckbar({
-          message: `${error.response.data.msg}`,
+          message: `${error.response?.data?.msg}`,
           open: true,
           position: SnackbarPosition.TOP,
           type: SnackbarType.ERROR,
@@ -74,6 +75,7 @@ const SignIn = () => {
 
   return (
     <View style={styles.container}>
+      <LoginAnimation />
       <Text style={styles.header}>Login</Text>
 
       <Controller
@@ -153,7 +155,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingHorizontal: 16,
-    justifyContent: 'center',
   },
   header: {
     fontSize: 24,

@@ -10,7 +10,7 @@ interface PasswordVisiblityIconProps {
 const PasswordVisiblityIcon: FC<PasswordVisiblityIconProps> = ({
   privateIcon,
 }) => {
-  return privateIcon ? (
+  return !privateIcon ? (
     <Icon name="eye" color={colors.primary} size={16} />
   ) : (
     <Icon name="eye-with-line" color={colors.secondary} size={16} />
