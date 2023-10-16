@@ -158,14 +158,8 @@ const SignUp = () => {
           isLoading={isSubmitting}
         />
       </View>
-
-      <Text style={styles.or}>Or</Text>
-
-      <View>
-        <GoogleSignInButton />
-      </View>
       <View style={styles.linkContainer}>
-        <Text>Dont have an account? </Text>
+        <Text>Alrady have an account? </Text>
         <Applink
           onPress={() => {
             navigation.navigate('SignIn');
@@ -173,6 +167,12 @@ const SignUp = () => {
           title="Sign In"
           active
         />
+      </View>
+
+      <Text style={styles.or}>Or continue</Text>
+
+      <View>
+        <GoogleSignInButton />
       </View>
     </View>
   );
@@ -191,13 +191,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   submitButtonContainer: {
-    marginTop: 10,
+    marginTop: 14,
   },
   or: {
-    marginVertical: 25,
+    marginVertical: 20,
     textAlign: 'center',
     fontSize: 18,
-    color: colors.tertiary,
   },
   googleIcon: {
     color: 'green',

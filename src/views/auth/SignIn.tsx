@@ -76,7 +76,10 @@ const SignIn = () => {
   return (
     <View style={styles.container}>
       <LoginAnimation />
-      <Text style={styles.header}>Login</Text>
+      <Text style={styles.header}>Welcome Back</Text>
+      <Text style={styles.subHeader}>
+        We have missed you. Let's start by Sign in!
+      </Text>
 
       <Controller
         control={control}
@@ -130,14 +133,8 @@ const SignIn = () => {
           isLoading={isSubmitting}
         />
       </View>
-
-      <Text style={styles.or}>Or Sign in with</Text>
-
-      <View>
-        <GoogleSignInButton />
-      </View>
       <View style={styles.linkContainer}>
-        <Text>Dont have an account? </Text>
+        <Text>Don't have an account? </Text>
         <Applink
           onPress={() => {
             navigation.navigate('SignUp');
@@ -145,6 +142,12 @@ const SignIn = () => {
           title="Sign Up"
           active
         />
+      </View>
+
+      <Text style={styles.or}>Or continue</Text>
+
+      <View>
+        <GoogleSignInButton />
       </View>
     </View>
   );
@@ -159,17 +162,18 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 10,
+  },
+  subHeader: {
+    fontSize: 11,
+    marginBottom: 10,
   },
   submitButtonContainer: {
-    marginTop: 10,
+    marginTop: 15,
   },
   or: {
-    marginVertical: 25,
+    marginVertical: 20,
     textAlign: 'center',
     fontSize: 18,
-    color: colors.tertiary,
   },
   googleIcon: {
     color: 'green',
@@ -177,7 +181,7 @@ const styles = StyleSheet.create({
   linkContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 10,
+    marginTop: 12,
   },
 });
 
