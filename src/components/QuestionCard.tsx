@@ -2,12 +2,25 @@ import AppButton from '@ui/AppButton';
 import HorizontalLineDivider from '@ui/HorizontalLineDivider';
 import QuestionOption from '@ui/QuestionOption';
 import colors from '@utils/colors';
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
 interface Props {}
 
 const QuestionCard: FC<Props> = ({}) => {
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
+
+  const handleOptionSelect = (index: any) => {
+    setSelectedOptionIndex(index);
+  };
+
+  const options = [
+    {letter: 'A', value: '4%'},
+    {letter: 'B', value: '8%'},
+    {letter: 'C', value: '10%'},
+    {letter: 'D', value: '6%'},
+    {letter: 'E', value: '6%'},
+  ];
   return (
     <>
       <View style={styles.container}>
@@ -19,11 +32,16 @@ const QuestionCard: FC<Props> = ({}) => {
         <HorizontalLineDivider color={colors.onSurface} height={1} />
         <Text style={styles.optionText}>Select from the Options</Text>
         <View style={styles.optionsContainer}>
-          <QuestionOption optionLetter="A" optionValue="4%" index={1} />
-          <QuestionOption optionLetter="B" optionValue="5%" index={2} />
-          <QuestionOption optionLetter="C" optionValue="8%" index={3} />
-          <QuestionOption optionLetter="D" optionValue="8%" index={4} />
-          <QuestionOption optionLetter="E" optionValue="8%" index={5} />
+          {options.map((option, index) => (
+            <QuestionOption
+              optionLetter={option.letter}
+              optionValue={option.value}
+              index={index}
+              selectedOptionIndex={selectedOptionIndex}
+              onSelect={handleOptionSelect}
+              key={index}
+            />
+          ))}
         </View>
         <HorizontalLineDivider color={colors.onSurface} height={1} />
         <View style={styles.buttonsContainer}>

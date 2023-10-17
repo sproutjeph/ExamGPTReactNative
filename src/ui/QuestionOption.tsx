@@ -1,32 +1,30 @@
 import MaterialComIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {StyleSheet, Text, Pressable, View} from 'react-native';
-import React, {FC, useState} from 'react';
 import colors from '@utils/colors';
+import React, {FC} from 'react';
 
 interface Props {
   optionLetter: string;
   optionValue: string;
   index: number;
+  selectedOptionIndex: number | null;
+  onSelect: (index: React.SetStateAction<number>) => void;
 }
 
-const QuestionOption: FC<Props> = ({optionLetter, optionValue, index}) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-
-  function handleSelect() {
-    if (selectedIndex === index) {
-      // If the current option is already selected, deselect it
-      setSelectedIndex(null);
-    } else {
-      setSelectedIndex(index);
-    }
-  }
+const QuestionOption: FC<Props> = ({
+  optionLetter,
+  optionValue,
+  index,
+  selectedOptionIndex,
+  onSelect,
+}) => {
   return (
     <Pressable
       onPress={() => {
-        handleSelect();
+        onSelect(index);
       }}
       style={styles.selectorContainer}>
-      {selectedIndex === index ? (
+      {selectedOptionIndex === index ? (
         <MaterialComIcon
           name="radiobox-marked"
           color={colors.primary}

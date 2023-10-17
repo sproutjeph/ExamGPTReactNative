@@ -36,3 +36,25 @@ export interface IUser {
   subjectVideo: Array<{subjectVideoId: string}>;
   apiUseageCount: number;
 }
+
+export interface IQuestion {
+  options: {
+    [key: string]: string;
+  };
+  _id: string;
+  correctOption: string;
+  examType: string;
+  examYear: string;
+  subject: string;
+  image: string;
+  question: string;
+  solution: string;
+}
+
+export interface Option {
+  a: string;
+  b: string;
+  c: string;
+  d: string;
+  e: string;
+}
