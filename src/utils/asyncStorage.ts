@@ -13,6 +13,6 @@ export const removeFromAsyncStorage = async (key: string) => {
   await AsyncStorage.removeItem(key);
 };
 
-export enum StoreKeys {
-  AUTH_TOKEN = 'AUTH_TOKEN',
+export enum AsyncStoreKeys {
+  IS_AUTH = 'IS_AUTH',
 }
