@@ -23,3 +23,16 @@ export interface ISubject {
     isActive: boolean;
   }[];
 }
+
+export interface IUser {
+  name: string;
+  email: string;
+  avatar?: {
+    public_id: string;
+    url: string;
+  };
+  role: string;
+  isVerified: boolean;
+  subjectVideo: Array<{subjectVideoId: string}>;
+  apiUseageCount: number;
+}

@@ -1,5 +1,6 @@
 import {View, StyleSheet, Text, Pressable, Image} from 'react-native';
 import Popover from 'react-native-popover-view';
+import {useAppSelector} from '@store/hooks';
 import React, {FC, useState} from 'react';
 import colors from '@utils/colors';
 
@@ -7,6 +8,10 @@ interface Props {}
 
 const UserProfile: FC<Props> = ({}) => {
   const [showPopover, setShowPopover] = useState(false);
+  const {userData} = useAppSelector(state => state.auth);
+  const imageSource = userData?.avatar?.url
+    ? userData?.avatar?.url
+    : require('../assets/no-photo.jpg');
 
   return (
     <Popover
@@ -14,13 +19,11 @@ const UserProfile: FC<Props> = ({}) => {
       onRequestClose={() => setShowPopover(false)}
       from={
         <Pressable onPress={() => setShowPopover(true)}>
-          <Image
-            source={require('../assets/no-photo.jpg')}
-            style={styles.profileImage}
-          />
+          <Image source={imageSource} style={styles.profileImage} />
         </Pressable>
       }>
       <View style={styles.contentContainer}>
+        <Text>{userData?.email}</Text>
         <Pressable>
           <Text>Logout</Text>
         </Pressable>

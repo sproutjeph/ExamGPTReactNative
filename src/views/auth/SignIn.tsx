@@ -11,6 +11,7 @@ import {updateAuthState} from '@feauters/authSlice';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {axiosInstance} from '@utils/axiosInstance';
 import {AuthStackParamList} from '@utils/types';
+import {updateUser} from '@feauters/authSlice';
 import {useAppDispatch} from '@store/hooks';
 import React, {useState} from 'react';
 import AppButton from '@ui/AppButton';
@@ -49,8 +50,10 @@ const SignIn = () => {
   const onSubmit = async (userData: any) => {
     try {
       const {data} = await axiosInstance.post('/login-user', userData);
+
       if (data?.success) {
         dispatch(updateAuthState(true));
+        dispatch(updateUser(data?.user));
         dispatch(
           updateSanckbar({
             message: 'Login successfull',
