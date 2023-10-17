@@ -1,5 +1,5 @@
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {View, StyleSheet, Text, Pressable, Image} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useAppDispatch, useAppSelector} from '@store/hooks';
 import Popover from 'react-native-popover-view';
 import {logout} from '@feauters/authSlice';

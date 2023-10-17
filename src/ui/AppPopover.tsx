@@ -1,3 +1,4 @@
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
 import Popover from 'react-native-popover-view';
 import React, {useState} from 'react';
@@ -14,6 +15,7 @@ interface PopoverProps {
 
 const AppPopover: React.FC<PopoverProps> = ({title, content}) => {
   const [showPopover, setShowPopover] = useState(false);
+  const navigation = useNavigation<NavigationProp<any>>();
 
   return (
     <Popover
@@ -31,7 +33,10 @@ const AppPopover: React.FC<PopoverProps> = ({title, content}) => {
           <Pressable
             key={i}
             style={styles.container}
-            onPress={() => setShowPopover(false)}>
+            onPress={() => {
+              setShowPopover(false);
+              navigation.navigate('Questions');
+            }}>
             <Text style={styles.title}>{item}</Text>
           </Pressable>
         ))}

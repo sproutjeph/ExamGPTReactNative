@@ -1,10 +1,9 @@
-import React, {FC} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Jamb from './Jamb';
-import Wassce from './Wassce';
-import Neco from './Neco';
+import React, {FC} from 'react';
 import PostUtme from './PostUtme';
-import Exam from './Exam';
+import Wassce from './Wassce';
+import Jamb from './Jamb';
+import Neco from './Neco';
 
 const Tab = createMaterialTopTabNavigator();
 

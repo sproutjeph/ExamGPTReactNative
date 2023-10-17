@@ -3,12 +3,13 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import UserProfile from '@components/UserProfile';
 import Settings from '@views/Settings';
-import Profile from '@views/Exams';
+import Exams from '@views/Exams';
 import colors from '@utils/colors';
 import Upload from '@views/Books';
 import Home from '@views/Home';
 import CBT from '@views/CBT';
 import React from 'react';
+import ExamNavigator from './ExamNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +41,7 @@ function BottomBar() {
       />
       <Tab.Screen
         name="Exams"
-        component={Profile}
+        component={ExamNavigator}
         options={{
           tabBarIcon: ({size}) => <FontAwesome name="user" size={size} />,
           tabBarLabel: 'EXAMS',
