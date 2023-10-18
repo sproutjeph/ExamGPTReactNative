@@ -50,7 +50,7 @@ function BottomBar() {
         }}
       />
       <Tab.Screen
-        name="AI"
+        name="AskAi"
         component={AskAi}
         options={{
           tabBarIcon: ({size}) => (

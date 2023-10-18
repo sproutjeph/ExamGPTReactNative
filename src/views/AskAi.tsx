@@ -1,5 +1,5 @@
+import React, {useState, useRef, useEffect} from 'react';
 import colors from '@utils/colors';
-import React, {useState, useRef} from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Pressable,
 } from 'react-native';
+import {useAppSelector} from '@store/hooks';
 
 interface Message {
   text: string;
@@ -17,6 +18,7 @@ interface Message {
 }
 
 const ChatInterface: React.FC = () => {
+  const {currentQuestion} = useAppSelector(state => state.askAI);
   const [userMessages, setUserMessages] = useState<Message[]>([]);
   const [botMessages, setBotMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -44,6 +46,10 @@ const ChatInterface: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    setInputMessage(currentQuestion);
+  }, [currentQuestion]);
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <FlatList
@@ -64,6 +70,7 @@ const ChatInterface: React.FC = () => {
           value={inputMessage}
           onChangeText={text => setInputMessage(text)}
           onSubmitEditing={handleSendMessage}
+          multiline
         />
         <Pressable style={styles.sendButton} onPress={handleSendMessage}>
           <Text style={styles.sendButtonText}>Send</Text>
@@ -110,9 +117,9 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    borderColor: '#ccc',
+    borderColor: colors.primary,
     borderWidth: 1,
-    borderRadius: 25,
+    borderRadius: 10,
     paddingVertical: 8,
     paddingHorizontal: 16,
     marginRight: 8,

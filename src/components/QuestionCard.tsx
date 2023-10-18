@@ -1,8 +1,11 @@
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import HorizontalLineDivider from '@ui/HorizontalLineDivider';
+import {ExamStackParamList, IQuestion} from '@utils/types';
+import {saveCurrentQuestion} from '@feauters/askAISlice';
 import {View, StyleSheet, Text} from 'react-native';
 import QuestionOption from '@ui/QuestionOption';
+import {useAppDispatch} from '@store/hooks';
 import React, {FC, useState} from 'react';
-import {IQuestion} from '@utils/types';
 import AppButton from '@ui/AppButton';
 import colors from '@utils/colors';
 
@@ -12,6 +15,8 @@ interface Props {
 }
 
 const QuestionCard: FC<Props> = ({question, questionIndex}) => {
+  const dispatch = useAppDispatch();
+  const navigation = useNavigation<NavigationProp<ExamStackParamList>>();
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
 
   const handleOptionSelect = (index: any) => {
@@ -40,7 +45,15 @@ const QuestionCard: FC<Props> = ({question, questionIndex}) => {
         <HorizontalLineDivider color={colors.onSurface} height={1} />
         <View style={styles.buttonsContainer}>
           <AppButton title="Check Ans" width={'45%'} bgColor={colors.outline} />
-          <AppButton title="Ask AI" width={'45%'} bgColor={colors.secondary} />
+          <AppButton
+            title="Ask AI"
+            width={'45%'}
+            bgColor={colors.secondary}
+            onPress={() => {
+              dispatch(saveCurrentQuestion(question.question));
+              navigation.navigate('AskAi');
+            }}
+          />
         </View>
       </View>
     </>

@@ -8,6 +8,7 @@ export type AuthStackParamList = {
 export type ExamStackParamList = {
   ExamsNav: undefined;
   Questions: {examType: string; examYear: number; subject: string};
+  AskAi: undefined;
 };
 
 export interface ISubject {
