@@ -1,41 +1,35 @@
-import AppButton from '@ui/AppButton';
 import HorizontalLineDivider from '@ui/HorizontalLineDivider';
-import QuestionOption from '@ui/QuestionOption';
-import colors from '@utils/colors';
-import React, {FC, useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
+import QuestionOption from '@ui/QuestionOption';
+import React, {FC, useState} from 'react';
+import {IQuestion} from '@utils/types';
+import AppButton from '@ui/AppButton';
+import colors from '@utils/colors';
 
-interface Props {}
+interface Props {
+  question: IQuestion;
+  questionIndex: number;
+}
 
-const QuestionCard: FC<Props> = ({}) => {
+const QuestionCard: FC<Props> = ({question, questionIndex}) => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
 
   const handleOptionSelect = (index: any) => {
     setSelectedOptionIndex(index);
   };
 
-  const options = [
-    {letter: 'A', value: '4%'},
-    {letter: 'B', value: '8%'},
-    {letter: 'C', value: '10%'},
-    {letter: 'D', value: '6%'},
-    {letter: 'E', value: '6%'},
-  ];
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.questionNumber}>Question(1)</Text>
-        <Text style={styles.question}>
-          A machine has a velocity ration of 5, if it requires a 50kg weigth to
-          overcome 200kg weight, the efficiency is?
-        </Text>
+        <Text style={styles.questionNumber}>Question({questionIndex + 1})</Text>
+        <Text style={styles.question}>{question.question}</Text>
         <HorizontalLineDivider color={colors.onSurface} height={1} />
         <Text style={styles.optionText}>Select from the Options</Text>
         <View style={styles.optionsContainer}>
-          {options.map((option, index) => (
+          {Object.keys(question.options)?.map((option, index) => (
             <QuestionOption
-              optionLetter={option.letter}
-              optionValue={option.value}
+              optionLetter={option}
+              optionValue={question.options[option]}
               index={index}
               selectedOptionIndex={selectedOptionIndex}
               onSelect={handleOptionSelect}
@@ -55,8 +49,6 @@ const QuestionCard: FC<Props> = ({}) => {
 
 const styles = StyleSheet.create({
   container: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
     borderColor: 'black',
     borderWidth: 1,
     padding: 10,

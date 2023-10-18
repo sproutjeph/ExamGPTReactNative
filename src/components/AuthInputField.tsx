@@ -16,7 +16,6 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import {FieldErrors} from 'react-hook-form';
 import colors from '@utils/colors';
 
 interface AuthInputFieldProps {
@@ -29,9 +28,7 @@ interface AuthInputFieldProps {
   containerStyle?: StyleProp<ViewStyle>;
   rightIcon?: ReactNode;
   onRightIconPressed?: () => void;
-  errors: FieldErrors<{
-    [x: string]: string;
-  }>;
+  errors: any;
   onChange: (value: string) => void;
   onBlur: () => void;
   value: string;

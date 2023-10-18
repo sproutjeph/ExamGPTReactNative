@@ -16,6 +16,7 @@ const Jamb: FC<Props> = ({}) => {
         {!isLoading &&
           subjects?.data.map((item: ISubject) => (
             <AppPopover
+              examType="JAMB"
               title={item.name}
               key={item._id}
               content={item?.examYears}

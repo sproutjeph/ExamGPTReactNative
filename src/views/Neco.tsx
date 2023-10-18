@@ -14,7 +14,12 @@ const Neco: FC<Props> = ({}) => {
       <View style={styles.subjectsContainer}>
         {!isLoading &&
           subjects?.data.map((item, i) => (
-            <AppPopover title={item.name} key={i} content={item.examYears} />
+            <AppPopover
+              examType="NECO"
+              title={item.name}
+              key={i}
+              content={item.examYears}
+            />
           ))}
       </View>
     </View>

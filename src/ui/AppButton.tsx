@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
   title: {
     color: colors.onSecondary,
     fontSize: 18,
-    letterSpacing: 1,
   },
 });
 

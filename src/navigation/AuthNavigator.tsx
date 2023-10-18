@@ -1,9 +1,9 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Activation from '@views/auth/Activation';
+import {AuthStackParamList} from '@utils/types';
 import SignIn from '@views/auth/SignIn';
 import SignUp from '@views/auth/SignUp';
 import React, {FC} from 'react';
-import {AuthStackParamList} from '@utils/types';
 
 interface Props {}
 const Stack = createNativeStackNavigator<AuthStackParamList>();

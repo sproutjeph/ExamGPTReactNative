@@ -1,9 +1,10 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Exams from '@views/Exams';
+import {ExamStackParamList} from '@utils/types';
 import Questions from '@views/Questions';
+import Exams from '@views/Exams';
 import React, {FC} from 'react';
 
-const Stack = createNativeStackNavigator<any>();
+const Stack = createNativeStackNavigator<ExamStackParamList>();
 
 interface Props {}
 

@@ -38,7 +38,7 @@ const QuestionOption: FC<Props> = ({
         />
       )}
       <View style={styles.valueContainer}>
-        <Text>{optionLetter}: </Text>
+        <Text>{optionLetter.toUpperCase()}: </Text>
         <Text>{optionValue}</Text>
       </View>
     </Pressable>

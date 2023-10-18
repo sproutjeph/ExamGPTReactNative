@@ -3,8 +3,10 @@ import {View, StyleSheet, Text, Pressable} from 'react-native';
 import Popover from 'react-native-popover-view';
 import React, {useState} from 'react';
 import colors from '@utils/colors';
+import {ExamStackParamList} from '@utils/types';
 
 interface PopoverProps {
+  examType: string;
   title: string;
   content: {
     examYear: number;
@@ -13,9 +15,9 @@ interface PopoverProps {
   }[];
 }
 
-const AppPopover: React.FC<PopoverProps> = ({title, content}) => {
+const AppPopover: React.FC<PopoverProps> = ({title, content, examType}) => {
   const [showPopover, setShowPopover] = useState(false);
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<ExamStackParamList>>();
 
   return (
     <Popover
@@ -35,7 +37,11 @@ const AppPopover: React.FC<PopoverProps> = ({title, content}) => {
             style={styles.container}
             onPress={() => {
               setShowPopover(false);
-              navigation.navigate('Questions');
+              navigation.navigate('Questions', {
+                examType: examType,
+                examYear: item,
+                subject: title,
+              });
             }}>
             <Text style={styles.title}>{item}</Text>
           </Pressable>
