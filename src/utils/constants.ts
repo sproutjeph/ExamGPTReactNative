@@ -4,7 +4,7 @@ export const routes = [
   {
     label: 'Dashboard',
     icon: 'th-large',
-    route: 'dashboard',
+    route: 'Home',
     backgroundColor: colors.tertiaryContainer,
     color: colors.onTertiaryContainer,
   },
@@ -18,7 +18,7 @@ export const routes = [
   {
     label: 'Ask AI',
     icon: 'reddit-alien',
-    route: 'ask-ai',
+    route: 'AskAi',
     backgroundColor: colors.secondaryContainer,
     color: colors.primary,
   },
@@ -34,7 +34,7 @@ export const routes = [
   {
     label: 'C B Test',
     icon: 'laptop',
-    route: 'computer-base-test',
+    route: 'CBT',
     backgroundColor: colors.primaryContainer,
     color: colors.onPrimaryContainer,
   },
