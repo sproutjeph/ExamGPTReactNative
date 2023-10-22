@@ -1,28 +1,34 @@
+import MaterialComIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SelectDropdown from 'react-native-select-dropdown';
 import {View, StyleSheet} from 'react-native';
 import React, {FC} from 'react';
 
-interface Props {}
+interface Props {
+  data: any[];
+  buttontext: string;
+}
 
-const AppSelect: FC<Props> = ({}) => {
-  const countries = ['Egypt', 'Canada', 'Australia', 'Ireland'];
+const AppSelect: FC<Props> = ({data, buttontext}) => {
   return (
     <View style={styles.container}>
       <SelectDropdown
-        data={countries}
+        data={data}
         onSelect={(selectedItem, index) => {
           console.log(selectedItem, index);
         }}
-        buttonTextAfterSelection={(selectedItem, index) => {
-          // text represented after item is selected
-          // if data array is an array of objects then return selectedItem.property to render after item is selected
+        buttonTextAfterSelection={selectedItem => {
           return selectedItem;
         }}
-        rowTextForSelection={(item, index) => {
-          // text represented for each item in dropdown
-          // if data array is an array of objects then return item.property to represent item in dropdown
+        rowTextForSelection={item => {
           return item;
         }}
+        renderDropdownIcon={() => (
+          <MaterialComIcon name="chevron-down" size={20} />
+        )}
+        dropdownStyle={styles.buttonStyle}
+        defaultButtonText={buttontext}
+        buttonTextStyle={styles.buttonText}
+        buttonStyle={styles.buttonStyle}
       />
     </View>
   );
@@ -30,6 +36,15 @@ const AppSelect: FC<Props> = ({}) => {
 
 const styles = StyleSheet.create({
   container: {},
+  buttonStyle: {
+    padding: 0,
+    borderRadius: 4,
+    maxWidth: 150,
+    margin: 0,
+  },
+  buttonText: {
+    fontSize: 13,
+  },
 });
 
 export default AppSelect;

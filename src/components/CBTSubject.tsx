@@ -25,14 +25,14 @@ const CBTSubject: FC<Props> = ({subject}) => {
             <MaterialComIcon name="calendar-month" size={24} />
             <Text>Exam Year</Text>
           </View>
-          <AppSelect />
+          <AppSelect buttontext="Exam Year" data={[2010, 2011, 2012]} />
         </View>
         <View style={styles.itemContainer}>
           <View style={styles.item}>
             <MaterialComIcon name="format-list-bulleted" size={24} />
             <Text>Number of Question</Text>
           </View>
-          <AppSelect />
+          <AppSelect buttontext="Number" data={[10, 20, 30]} />
         </View>
       </Card>
     </View>
