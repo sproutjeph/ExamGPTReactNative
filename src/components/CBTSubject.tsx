@@ -8,9 +8,10 @@ import Card from '@ui/Card';
 
 interface Props {
   subject: ISubject;
+  examYears: number[];
 }
 
-const CBTSubject: FC<Props> = ({subject}) => {
+const CBTSubject: FC<Props> = ({subject, examYears}) => {
   return (
     <View style={styles.container}>
       <Card style={styles.card}>
@@ -25,7 +26,7 @@ const CBTSubject: FC<Props> = ({subject}) => {
             <MaterialComIcon name="calendar-month" size={24} />
             <Text>Exam Year</Text>
           </View>
-          <AppSelect buttontext="Exam Year" data={[2010, 2011, 2012]} />
+          <AppSelect buttontext="Exam Year" data={examYears} />
         </View>
         <View style={styles.itemContainer}>
           <View style={styles.item}>

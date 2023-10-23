@@ -1,4 +1,3 @@
-import React, {useState, useRef, useEffect} from 'react';
 import colors from '@utils/colors';
 import {
   View,
@@ -9,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Pressable,
 } from 'react-native';
+import React, {useState, useRef, useEffect} from 'react';
 import {useAppSelector} from '@store/hooks';
 
 interface Message {

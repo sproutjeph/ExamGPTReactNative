@@ -26,7 +26,7 @@ export const routes = [
   {
     label: 'Books',
     icon: 'book',
-    route: 'books',
+    route: 'Books',
     backgroundColor: colors.tertiaryContainer,
     color: colors.onTertiaryContainer,
   },
@@ -41,14 +41,14 @@ export const routes = [
   {
     label: 'Subscription',
     icon: 'dollar',
-    route: 'subscription-prices',
+    route: 'Subscription',
     backgroundColor: colors.secondaryContainer,
     color: colors.primary,
   },
   {
     label: 'Videos',
     icon: 'video-camera',
-    route: 'videos',
+    route: 'Videos',
     backgroundColor: colors.tertiaryContainer,
     color: colors.onTertiaryContainer,
   },
